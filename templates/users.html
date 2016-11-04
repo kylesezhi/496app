@@ -2,17 +2,17 @@
   <ion-content>
     <ion-list>
       <ion-item ng-repeat="user in users track by $index" href="#/app/users/{{user}}">
-        <button ng-click="addUserToLine({{user}}, $index)" class="button button-positive">
+        <!-- <button ng-click="addUserToLine({{user}}, $index)" class="button button-positive">
           <i class="icon ion-plus-round"></i>
-        </button>
+        </button> -->
         <button ng-click="deleteUser({{user}}, $index)" class="button button-assertive">
           <i class="icon ion-trash-b"></i>
         </button>
-        {{$index}} - {{user}}
+        ID # {{user}}
       </ion-item>
     </ion-list>
     <label class="item">
-      <a href="#" class="button button-block button-positive">Add User</a>
+      <a ui-sref="app.addUser" class="button button-block button-positive">Add User</a>
     </label>
   </ion-content>
 </ion-view>

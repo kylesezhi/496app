@@ -100,4 +100,8 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
+})
+
+.controller('AddUserCtrl', function($scope, $stateParams) {
+  console.log('addUSer');
 });
