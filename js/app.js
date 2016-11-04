@@ -41,6 +41,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
+    
     .state('app.users', {
       url: '/users',
       views: {
@@ -51,16 +52,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
 
-
-  .state('app.single', {
-    url: '/users/:playlistId',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl'
+    .state('app.addUser', {
+      url: '/addUser',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/addUser.html',
+          controller: 'AddUserCtrl'
+        }
       }
-    }
-  });
+    });
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/users');
 });
