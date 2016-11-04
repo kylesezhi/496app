@@ -46,8 +46,6 @@ angular.module('starter.controllers', [])
   $http.get('https://project-4-144319.appspot.com/api/user')
     .success(function(data, status, headers,config){
       console.log('data success');
-      // console.log(data); // for browser console
-      // console.log(data.ids); // for browser console
       ids = [];
       for(i = 0;i<data.ids.length;i++) {
         x = data.ids[i];
@@ -61,6 +59,30 @@ angular.module('starter.controllers', [])
     })
     .then(function(users){
       things = users.data;
+    });
+})
+
+.controller('BrowseCtrl', function($scope, $http) {
+  $scope.lineentries = "";
+  $http.get('https://project-4-144319.appspot.com/api/lineentry')
+    .success(function(data, status, headers,config){
+      console.log('data success');
+      // console.log(data); // for browser console
+      ids = [];
+      for(i = 0;i<data.ids.length;i++) {
+        x = data.ids[i];
+        ids.push(x);
+      }
+      console.log(ids); // for browser console
+      $scope.lineentries = ids; // for UI
+
+      // $scope.lineentries = data; // for UI
+    })
+    .error(function(data, status, headers,config){
+      console.log('data error');
+    })
+    .then(function(lineentries){
+      things = lineentries.data;
     });
 })
 
