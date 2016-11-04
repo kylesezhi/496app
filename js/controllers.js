@@ -60,6 +60,18 @@ angular.module('starter.controllers', [])
     .then(function(users){
       things = users.data;
     });
+    
+    $scope.deleteUser= function(id, $index){
+      console.log(id);
+      // $http({
+      //   method:"DELETE",
+      //   url: urlApi + id,
+      //   params: {token: token}	
+      // }).success(function(res){
+      //   console.log('Project'+ id +' deleted');
+      // });
+      // $scope.data.splice($index, 1);
+    };
 })
 
 .controller('LineCtrl', function($scope, $http) {
