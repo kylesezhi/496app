@@ -43,7 +43,8 @@ angular.module('starter.controllers', [])
 
 .controller('UsersCtrl', function($scope, $http) {
   $scope.users = "";
-  $http.get('https://project-4-144319.appspot.com/api/user')
+  var lineApi = 'https://project-4-144319.appspot.com/api/user';
+  $http.get(lineApi)
     .success(function(data, status, headers,config){
       console.log('data success');
       ids = [];
@@ -63,14 +64,16 @@ angular.module('starter.controllers', [])
     
     $scope.deleteUser= function(id, $index){
       console.log(id);
-      // $http({
-      //   method:"DELETE",
-      //   url: urlApi + id,
-      //   params: {token: token}	
-      // }).success(function(res){
-      //   console.log('Project'+ id +' deleted');
-      // });
-      // $scope.data.splice($index, 1);
+      $http({
+        method:"DELETE",
+        url: lineApi + '/' + id,
+        params: {}
+        // params: {token: token}	
+      }).success(function(res){
+        console.log('User ID #'+ id +' deleted');
+      });
+      
+      $scope.users.splice($index, 1);
     };
 })
 
@@ -87,8 +90,6 @@ angular.module('starter.controllers', [])
       }
       console.log(ids); // for browser console
       $scope.lineentries = ids; // for UI
-
-      // $scope.lineentries = data; // for UI
     })
     .error(function(data, status, headers,config){
       console.log('data error');
