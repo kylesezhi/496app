@@ -42,28 +42,26 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistsCtrl', function($scope, $http) {
-  $scope.result = "";
-  $http.get('http://date.jsontest.com/')
+  $scope.users = "";
+  $http.get('https://project-4-144319.appspot.com/api/user')
     .success(function(data, status, headers,config){
       console.log('data success');
-      console.log(data); // for browser console
-      $scope.result = data; // for UI
+      // console.log(data); // for browser console
+      // console.log(data.ids); // for browser console
+      ids = [];
+      for(i = 0;i<data.ids.length;i++) {
+        x = data.ids[i];
+        ids.push(x);
+      }
+      console.log(ids); // for browser console
+      $scope.users = ids; // for UI
     })
     .error(function(data, status, headers,config){
       console.log('data error');
     })
-    .then(function(result){
-      things = result.data;
+    .then(function(users){
+      things = users.data;
     });
-    
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
