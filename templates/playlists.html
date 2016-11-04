@@ -1,12 +1,14 @@
 <ion-view view-title="Users">
   <ion-content>
     <ion-list>
-      <ion-item ng-repeat="user in users" href="#/app/users/{{user.id}}">
-        {{user}}
+      <ion-item class="item-button-right" ng-repeat="user in users" href="#/app/users/{{user.id}}">
+        {{user}}<button class="button button-assertive">
+      <i class="icon ion-trash-a"></i>
+    </button>
       </ion-item>
     </ion-list>
-    <button class="button icon-left ion-plus-round button-positive">
-      Add User
-    </button>
+    <label class="item">
+      <a href="#" class="button button-block button-positive">Add User</a>
+    </label>
   </ion-content>
 </ion-view>

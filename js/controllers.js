@@ -41,7 +41,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope, $http) {
+.controller('UsersCtrl', function($scope, $http) {
   $scope.users = "";
   $http.get('https://project-4-144319.appspot.com/api/user')
     .success(function(data, status, headers,config){
@@ -62,7 +62,7 @@ angular.module('starter.controllers', [])
     });
 })
 
-.controller('BrowseCtrl', function($scope, $http) {
+.controller('LineCtrl', function($scope, $http) {
   $scope.lineentries = "";
   $http.get('https://project-4-144319.appspot.com/api/lineentry')
     .success(function(data, status, headers,config){
