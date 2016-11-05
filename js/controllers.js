@@ -100,6 +100,15 @@ angular.module('starter.controllers', [])
 })
 
 .controller('AddUserCtrl', function($scope, $stateParams, $http, $ionicPopup) {
+  var toParams = function (obj) 
+  {
+    var p = [];
+    for (var key in obj) 
+    {
+      p.push(key + '=' + encodeURIComponent(obj[key]));
+    }
+    return p.join('&');
+  };
   var lineApi = 'https://project-4-144319.appspot.com/api/user';
   $scope.typeList = [
         { text: "Student", value: "student" },
@@ -155,7 +164,7 @@ angular.module('starter.controllers', [])
         method: 'POST',
         url: lineApi,	
         headers: {'Content-Type': "application/x-www-form-urlencoded"},
-        data: payload,
+        data: toParams(payload),
     }).success(function(res){
       var a = $ionicPopup.alert({
         title: "Success!",
