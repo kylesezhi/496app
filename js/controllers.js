@@ -100,5 +100,12 @@ angular.module('starter.controllers', [])
 })
 
 .controller('AddUserCtrl', function($scope, $stateParams) {
-  console.log('addUSer');
+  // console.log('addUSer');
+  $scope.typeList = [
+        { text: "Student", value: "student" },
+        { text: "Teacher", value: "teacher" },
+    ];
+    $scope.data = {
+        default: 'student'
+    }; 
 });
