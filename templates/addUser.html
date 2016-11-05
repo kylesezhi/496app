@@ -2,6 +2,7 @@
   <ion-content scroll="true" ng-controller="AddUserCtrl">
   <form ng-submit="submitUser()" name="addUserForm" novalidate>
   	<div class="list">
+      <div class="item item-divider">Account</div>
   	<label class="item item-input">
       <span class="input-label">First name</span>
   		<input type="text" name="firstname" ng-model="data.firstname" required/>
@@ -20,21 +21,17 @@
     </label>
     <div class="item item-divider">Type</div>
     <div class="list">
-            <ion-radio ng-repeat="item in typeList" ng-value="item.value" 
-             ng-model="data.default"> {{ item.text }}
-            </ion-radio>
-        </div>
-    <!-- <ion-list radio-group name="type">
-    <ion-radio ng-model="data.type" value="student" checked="true">Student</ion-radio>
-    <ion-radio ng-model="data.type" value="teacher">Teacher</ion-radio>
-  </ion-list> -->
+        <ion-radio ng-repeat="item in typeList" ng-value="item.value" 
+         ng-model="data.type"> {{ item.text }}
+        </ion-radio>
+      </div>
   	</div>
   		<div class="padding">
         <button class="button button-block button-positive" ng-disabled="addUserForm.$invalid" type="submit">Submit</button>
-  			<p ng-show="addUserForm.firstname.$error.required">*First name is required.</p>
-  			<p ng-show="addUserForm.lastname.$error.required">*Last name is required.</p>
-  			<p ng-show="addUserForm.email.$invalid">*A valid email address is required.</p>
-  			<p ng-show="addUserForm.password.$error.required">*Password is required.</p>
+  			<p ng-show="addUserForm.firstname.$error.required">* First name is required.</p>
+  			<p ng-show="addUserForm.lastname.$error.required">* Last name is required.</p>
+  			<p ng-show="addUserForm.email.$invalid">* A valid email address is required.</p>
+  			<p ng-show="addUserForm.password.$error.required">* Password is required.</p>
   	</div>
   </form>	
 </ion-content>

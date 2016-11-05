@@ -99,13 +99,73 @@ angular.module('starter.controllers', [])
     });
 })
 
-.controller('AddUserCtrl', function($scope, $stateParams) {
-  // console.log('addUSer');
+.controller('AddUserCtrl', function($scope, $stateParams, $http, $ionicPopup) {
+  var lineApi = 'https://project-4-144319.appspot.com/api/user';
   $scope.typeList = [
         { text: "Student", value: "student" },
         { text: "Teacher", value: "teacher" },
     ];
     $scope.data = {
-        default: 'student'
+        type: 'student'
     }; 
+  $scope.submitUser=function(){
+    var firstname = $scope.data.firstname;
+    console.log(firstname);
+    var lastname = $scope.data.lastname;
+    console.log(lastname);
+    var email = $scope.data.email;
+    console.log(email);
+    var password = $scope.data.password;
+    console.log(password);
+    var type = $scope.data.type;
+    if (type === 'student') {
+      type = 'user';
+    } else {
+      type = 'admin';
+    }
+    console.log(type);
+    
+    // $http.post(lineApi, { params: { 
+    //     first_name: firstname,
+    //     last_name: lastname,
+    //     email: email,
+    //     password: password,
+    //     user_type: type,
+    //   } })
+    //   .success(function(data) {
+    //       var a = $ionicPopup.alert({
+    //         title: "Success!",
+    //         template: "User created."
+    //       });
+    //   })
+    //   .error(function(data) {
+    //       alert("ERROR");
+    //   });    
+
+    var payload = {
+      first_name: firstname,
+      last_name: lastname,
+      email: email,
+      password: password,
+      user_type: type,
+    };
+    console.log(payload);
+
+    $http({
+        method: 'POST',
+        url: lineApi,	
+        headers: {'Content-Type': "application/x-www-form-urlencoded"},
+        data: payload,
+    }).success(function(res){
+      var a = $ionicPopup.alert({
+        title: "Success!",
+        template: "User created."
+      });
+      console.log(res);
+      
+      $scope.data={};
+      $scope.addUserForm.$setPristine();
+      $scope.addUserForm.$setUntouched();
+    });
+  };
 });
