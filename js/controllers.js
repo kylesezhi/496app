@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ngCordova'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -100,6 +100,8 @@ angular.module('starter.controllers', [])
 })
 
 .controller('AddUserCtrl', function($scope, $stateParams, $http, $ionicPopup) {
+  // hat tip to:
+  // http://stackoverflow.com/questions/31626872/ionic-framework-http-post-request
   var toParams = function (obj) 
   {
     var p = [];
@@ -133,23 +135,6 @@ angular.module('starter.controllers', [])
       type = 'admin';
     }
     console.log(type);
-    
-    // $http.post(lineApi, { params: { 
-    //     first_name: firstname,
-    //     last_name: lastname,
-    //     email: email,
-    //     password: password,
-    //     user_type: type,
-    //   } })
-    //   .success(function(data) {
-    //       var a = $ionicPopup.alert({
-    //         title: "Success!",
-    //         template: "User created."
-    //       });
-    //   })
-    //   .error(function(data) {
-    //       alert("ERROR");
-    //   });    
 
     var payload = {
       first_name: firstname,
