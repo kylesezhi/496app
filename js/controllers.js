@@ -41,7 +41,19 @@ angular.module('starter.controllers', ['ngCordova'])
   };
 })
 
-.controller('UsersCtrl', function($scope, $http) {
+.controller('UsersCtrl', function($scope, $http, $ionicPlatform, $cordovaBadge) {
+  $ionicPlatform.ready(function() {
+      $cordovaBadge.promptForPermission();
+
+      $scope.setBadge = function(value) {
+          $cordovaBadge.hasPermission().then(function(result) {
+              $cordovaBadge.set(value);
+          }, function(error) {
+              alert(error);
+          });
+      };
+  });
+
   $scope.users = "";
   var lineApi = 'https://project-4-144319.appspot.com/api/user';
   $http.get(lineApi)
@@ -54,6 +66,13 @@ angular.module('starter.controllers', ['ngCordova'])
       }
       console.log(ids); // for browser console
       $scope.users = ids; // for UI
+      
+      $cordovaBadge.hasPermission().then(function(result) {
+          $cordovaBadge.set(ids.length);
+      }, function(error) {
+          alert(error);
+      });
+      
     })
     .error(function(data, status, headers,config){
       console.log('data error');
@@ -77,7 +96,8 @@ angular.module('starter.controllers', ['ngCordova'])
     };
 })
 
-.controller('LineCtrl', function($scope, $http) {
+.controller('LineCtrl', function($scope, $http, $ionicPlatform, $cordovaBadge) {
+       
   $scope.lineentries = "";
   $http.get('https://project-4-144319.appspot.com/api/lineentry')
     .success(function(data, status, headers,config){
