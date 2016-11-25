@@ -22,7 +22,7 @@
       </div>
     </form>
     <div class="buttons padding">
-    <a ng-click="logOut()" class="button button-block button-negative">Log out</a>
+    <a ng-if="loggedIn" ng-click="logOut()" class="button button-block button-negative">Log out</a>
     </div>
   </ion-content>
 </ion-modal-view>

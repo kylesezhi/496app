@@ -9,6 +9,8 @@ angular.module('starter.controllers', ['ngCordova'])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
+  $scope.loggedIn = window.localStorage.getItem("token");
+
   // Form data for the login modal
   $scope.loginData = {};
 
