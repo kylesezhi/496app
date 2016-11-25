@@ -22,6 +22,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
   });
 })
 
+.config(function($ionicConfigProvider) {
+  // Hat tip to #4 in:
+  // https://www.toptal.com/ionic/most-common-ionic-development-mistakes
+  $ionicConfigProvider.views.maxCache(0);
+})
+
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 

@@ -32,7 +32,8 @@ angular.module('starter.controllers', ['ngCordova'])
   $scope.logOut = function() {
     window.localStorage.setItem("token", "");
     $scope.closeLogin();
-    $state.go('app.users');
+    window.location.reload(true);
+    // $state.go('app.users', {}, {reload: true});
   };
 
   // Perform the login action when the user submits the login form
@@ -81,7 +82,9 @@ angular.module('starter.controllers', ['ngCordova'])
         // });
       }
       $scope.closeLogin();
-      $state.go('app.users', {}, {reload: true});
+      window.location.reload(true);
+      // $state.reload();
+      // $state.go('app.users', {}, {reload: true});
     });
     
 
