@@ -1,7 +1,10 @@
 <ion-view view-title="Line">
   <ion-content>
     <ion-list>
-      <ion-item ng-repeat="line in lineentries">
+      <ion-item ng-repeat="line in lineentries track by $index" class="item-button-left">
+        <button ng-if="loggedIn" ng-click="deleteLine({{line.id}}, $index)" class="button button-balanced">
+          <i class="icon ion-checkmark"></i>
+        </button>
         {{line.username}}
         <span class="item-note">
           {{line.created}}
