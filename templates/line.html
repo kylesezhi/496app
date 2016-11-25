@@ -2,9 +2,9 @@
   <ion-content>
     <ion-list>
       <ion-item ng-repeat="line in lineentries">
-        {{line}}
+        {{line.username}}
         <span class="item-note">
-          Time
+          {{line.created}}
         </span>
       </ion-item>
     </ion-list>

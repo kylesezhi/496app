@@ -177,14 +177,14 @@ angular.module('starter.controllers', ['ngCordova'])
   $http.get('http://localhost:8080/api/lineentry')
     .success(function(data, status, headers,config){
       console.log('data success');
-      // console.log(data); // for browser console
-      ids = [];
-      for(i = 0;i<data.ids.length;i++) {
-        x = data.ids[i];
-        ids.push(x);
+      console.log(data); // for browser console
+      line = [];
+      for(i = 0;i<data.length;i++) {
+        x = data[i];
+        line.push(x);
       }
-      console.log(ids); // for browser console
-      $scope.lineentries = ids; // for UI
+      console.log(line); // for browser console
+      $scope.lineentries = line; // for UI
     })
     .error(function(data, status, headers,config){
       console.log('data error');
