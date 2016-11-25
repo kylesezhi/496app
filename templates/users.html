@@ -2,24 +2,23 @@
   <ion-content>
     <ion-list>
       <div class="item item-divider">Students</div>
-      <ion-item ng-repeat="user in users track by $index" href="#/app/users/{{user}}">
-        <!-- <button ng-click="addUserToLine({{user}}, $index)" class="button button-positive">
+      <ion-item ng-repeat="user in users track by $index" class="item-button-right">
+         {{user.first_name}} {{user.last_name}}
+         &nbsp;
+        <div class="buttons">
+        <button ng-click="addUserToLine({{user}}, $index)" class="button button-positive">
           <i class="icon ion-plus-round"></i>
-        </button> -->
-        <button ng-if="loggedIn" ng-click="deleteUser({{user.id}}, $index)" class="button button-assertive">
-          <i class="icon ion-trash-b"></i>
         </button>
-        {{user.first_name}} {{user.last_name}}
+        <button ng-if="loggedIn" ng-click="deleteUser({{user.id}}, $index)" class="button button-assertive">
+        <i class="icon ion-trash-b"></i>
+      </button>
+      </div>
       </ion-item>
       
       <div class="item item-divider">Teachers</div>
       <ion-item ng-repeat="admin in admins track by $index">
-        <!-- <button ng-click="addUserToLine({{user}}, $index)" class="button button-positive">
-          <i class="icon ion-plus-round"></i>
-        </button> -->
         {{admin.first_name}} {{admin.last_name}}
       </ion-item>
-
     </ion-list>
       <div class="buttons padding">
       <a ng-if="loggedIn" ui-sref="app.addUser" class="button button-block button-positive">Add User</a>
