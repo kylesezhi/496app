@@ -12,15 +12,20 @@
         <button ng-if="loggedIn" ng-click="deleteUser({{user.id}}, $index)" class="button button-assertive">
         <i class="icon ion-trash-b"></i>
       </button>
-      <button ng-if="loggedIn" ng-click="" class="button button-positive">
+      <!-- <button ng-if="loggedIn" ng-click="" class="button button-positive">
       <i class="icon ion-edit"></i>
-    </button>
+    </button> -->
       </div>
       </ion-item>
       
       <div class="item item-divider">Teachers</div>
-      <ion-item ng-repeat="admin in admins track by $index">
+      <ion-item ng-repeat="admin in admins track by $index" class="item-button-right">
         {{admin.first_name}} {{admin.last_name}}
+        <div class="buttons">
+          <button ng-if="admin.isMe" ng-click="" class="button button-positive">
+          <i class="icon ion-edit"></i>
+        </button>
+        </div>
       </ion-item>
     </ion-list>
       <div class="buttons padding">

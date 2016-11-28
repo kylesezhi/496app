@@ -33,6 +33,7 @@ angular.module('starter.controllers', ['ngCordova'])
   
   $scope.logOut = function() {
     window.localStorage.setItem("token", "");
+    window.localStorage.setItem("id", "");
     $scope.closeLogin();
     window.location.reload(true);
     // $state.go('app.users', {}, {reload: true});
@@ -72,12 +73,14 @@ angular.module('starter.controllers', ['ngCordova'])
       console.log(res);
       if('token' in res) {
         window.localStorage.setItem("token", res.token);
+        window.localStorage.setItem("id", res.id);
         // var a = $ionicPopup.alert({
         //   title: "Success!",
         //   template: "Logged in."
         // });
       } else {
         window.localStorage.removeItem("token");
+        window.localStorage.removeItem("id");
         // var a = $ionicPopup.alert({
         //   title: "Error.",
         //   template: "Incorrect email or password."
@@ -137,7 +140,15 @@ angular.module('starter.controllers', ['ngCordova'])
           users.push(x);
         }
       }
-      console.log(users); // for browser console
+      console.log("DEBUG"); // for browser console
+      for(i = 0;i<users.length;i++) { // who am I?
+        if (users[i].id === window.localStorage.getItem("id")) users[i].isMe = true;
+      }
+      for(i = 0;i<admins.length;i++) { // who am I?
+        if (admins[i].id == window.localStorage.getItem("id")) admins[i].isMe = true;
+      }
+      console.log(users);
+      console.log(admins);
       $scope.users = users; // for UI
       $scope.admins = admins; // for UI
       
