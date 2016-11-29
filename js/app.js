@@ -58,6 +58,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
       }
     })
 
+    .state('app.editUser', {
+      url: '/editUser',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/editUser.html',
+          controller: 'EditUserCtrl'
+        }
+      }
+    })
+
     .state('app.addUser', {
       url: '/addUser',
       views: {

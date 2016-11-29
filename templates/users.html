@@ -22,7 +22,7 @@
       <ion-item ng-repeat="admin in admins track by $index" class="item-button-right">
         {{admin.first_name}} {{admin.last_name}}
         <div class="buttons">
-          <button ng-if="admin.isMe" ng-click="" class="button button-positive">
+          <button ng-if="admin.isMe" ui-sref="app.editUser" class="button button-positive">
           <i class="icon ion-edit"></i>
         </button>
         </div>

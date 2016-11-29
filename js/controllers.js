@@ -205,6 +205,14 @@ angular.module('starter.controllers', ['ngCordova'])
     });
 })
 
+.controller('EditUserCtrl', function($scope, $http) {
+       
+  $scope.data = {
+    firstname: 'stuff'
+  };
+  
+})
+
 .controller('AddUserCtrl', function($scope, $stateParams, $http, $ionicPopup) {
   // hat tip to:
   // http://stackoverflow.com/questions/31626872/ionic-framework-http-post-request
