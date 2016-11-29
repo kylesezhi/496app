@@ -207,10 +207,29 @@ angular.module('starter.controllers', ['ngCordova'])
 
 .controller('EditUserCtrl', function($scope, $http) {
        
-  $scope.data = {
-    firstname: 'stuff'
-  };
+  // $scope.data = {
+  //   firstname: 'stuff',
+  //   lastname: 'morestuff'
+  // };
   
+  var lineApi = 'http://localhost:8080/api/user/' +  window.localStorage.getItem("id");
+  $http.get(lineApi)
+    .success(function(data, status, headers, config){
+      console.log('data success');
+      // console.log(data);
+      $scope.data = {
+        firstname: data.first_name,
+        lastname: data.last_name,
+        email: data.email
+      };
+      
+    })
+    .error(function(data, status, headers,config){
+      console.log('data error');
+    })
+    .then(function(users){
+      // things = users.data;
+    });
 })
 
 .controller('AddUserCtrl', function($scope, $stateParams, $http, $ionicPopup) {
