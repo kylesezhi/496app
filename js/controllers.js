@@ -205,7 +205,7 @@ angular.module('starter.controllers', ['ngCordova'])
     });
 })
 
-.controller('EditUserCtrl', function($scope, $http) {
+.controller('EditUserCtrl', function($scope, $http, $ionicPopup) {
        
   // $scope.data = {
   //   firstname: 'stuff',
@@ -230,6 +230,51 @@ angular.module('starter.controllers', ['ngCordova'])
     .then(function(users){
       // things = users.data;
     });
+    
+    $scope.submitEditUser=function(){
+      var toParams = function (obj) 
+      {
+        var p = [];
+        for (var key in obj) 
+        {
+          p.push(key + '=' + encodeURIComponent(obj[key]));
+        }
+        return p.join('&');
+      };
+
+      var firstname = $scope.data.firstname;
+      console.log(firstname);
+      var lastname = $scope.data.lastname;
+      console.log(lastname);
+      var email = $scope.data.email;
+      console.log(email);
+      var key = window.localStorage.getItem('token');
+      console.log(key);
+
+      var payload = {
+        first_name: firstname,
+        last_name: lastname,
+        email: email,
+        token: key
+      };
+      console.log(payload);
+
+      lineApi = 'http://localhost:8080/api/user';
+      $http({
+          method: 'POST',
+          url: lineApi,	
+          headers: {'Content-Type': "application/x-www-form-urlencoded"},
+          data: toParams(payload),
+      }).success(function(res){
+        // console.log(res);
+        
+        var a = $ionicPopup.alert({
+          title: "Success!",
+          template: "User updated."
+        });
+
+      });
+    };
 })
 
 .controller('AddUserCtrl', function($scope, $stateParams, $http, $ionicPopup) {
