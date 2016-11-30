@@ -34,6 +34,7 @@ angular.module('starter.controllers', ['ngCordova'])
   $scope.logOut = function() {
     window.localStorage.setItem("token", "");
     window.localStorage.setItem("id", "");
+    window.localStorage.setItem("user_type", "");
     $scope.closeLogin();
     window.location.reload(true);
     // $state.go('app.users', {}, {reload: true});
@@ -74,6 +75,7 @@ angular.module('starter.controllers', ['ngCordova'])
       if('token' in res) {
         window.localStorage.setItem("token", res.token);
         window.localStorage.setItem("id", res.id);
+        window.localStorage.setItem("user_type", res.user_type);
         // var a = $ionicPopup.alert({
         //   title: "Success!",
         //   template: "Logged in."
@@ -81,6 +83,7 @@ angular.module('starter.controllers', ['ngCordova'])
       } else {
         window.localStorage.removeItem("token");
         window.localStorage.removeItem("id");
+        window.localStorage.removeItem("user_type");
         // var a = $ionicPopup.alert({
         //   title: "Error.",
         //   template: "Incorrect email or password."
@@ -125,6 +128,8 @@ angular.module('starter.controllers', ['ngCordova'])
 
   $scope.users = "";
   $scope.loggedIn = window.localStorage.getItem("token");
+  if(window.localStorage.getItem("user_type") == 'admin') $scope.isAdmin = true;
+  else $scope.isAdmin = false;
   var lineApi = 'http://localhost:8080/api/user';
   $http.get(lineApi)
     .success(function(data, status, headers,config){
@@ -142,7 +147,7 @@ angular.module('starter.controllers', ['ngCordova'])
       }
       console.log("DEBUG"); // for browser console
       for(i = 0;i<users.length;i++) { // who am I?
-        if (users[i].id === window.localStorage.getItem("id")) users[i].isMe = true;
+        if (users[i].id == window.localStorage.getItem("id")) users[i].isMe = true;
       }
       for(i = 0;i<admins.length;i++) { // who am I?
         if (admins[i].id == window.localStorage.getItem("id")) admins[i].isMe = true;

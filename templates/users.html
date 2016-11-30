@@ -6,10 +6,10 @@
          {{user.first_name}} {{user.last_name}}
          &nbsp;
         <div class="buttons">
-        <!-- <button ng-if="loggedIn" ng-click="addUserToLine({{user}}, $index)" class="button button-balanced">
+        <button ng-if="user.isMe" ng-click="addUserToLine({{user}}, $index)" class="button button-balanced">
           <i class="icon ion-plus-round"></i>
-        </button> -->
-        <button ng-if="loggedIn" ng-click="deleteUser({{user.id}}, $index)" class="button button-assertive">
+        </button>
+        <button ng-if="isAdmin" ng-click="deleteUser({{user.id}}, $index)" class="button button-assertive">
         <i class="icon ion-trash-b"></i>
       </button>
       <!-- <button ng-if="loggedIn" ng-click="" class="button button-positive">
