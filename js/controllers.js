@@ -105,7 +105,7 @@ angular.module('starter.controllers', ['ngCordova'])
   };
 })
 
-.controller('UsersCtrl', function($scope, $http, $ionicPlatform, $cordovaBadge, $state) {
+.controller('UsersCtrl', function($scope, $http, $ionicPlatform, $cordovaBadge, $state, $ionicPopup) {
   // console.log("DEBUZzz");
   // console.log(window.localStorage.getItem("token"));
   
@@ -125,7 +125,41 @@ angular.module('starter.controllers', ['ngCordova'])
       //     });
       // };
   });
+  
+  $scope.addUserToLine = function(user, $index){
+    var token = window.localStorage.getItem("token");
+    var toParams = function (obj) 
+    {
+      var p = [];
+      for (var key in obj) 
+      {
+        p.push(key + '=' + encodeURIComponent(obj[key]));
+      }
+      return p.join('&');
+    };
+    var payload = {
+      user: user.id,
+      token: token
+    };
+    console.log(payload);
 
+    lineApi = 'http://localhost:8080/api/lineentry';
+    $http({
+        method: 'POST',
+        url: lineApi,	
+        headers: {'Content-Type': "application/x-www-form-urlencoded"},
+        data: toParams(payload),
+    }).success(function(res){
+      // console.log(res);
+      
+      var a = $ionicPopup.alert({
+        title: "Success!",
+        template: "User added to line."
+      });
+
+    });
+  };
+  
   $scope.users = "";
   $scope.loggedIn = window.localStorage.getItem("token");
   if(window.localStorage.getItem("user_type") == 'admin') $scope.isAdmin = true;
@@ -189,6 +223,53 @@ angular.module('starter.controllers', ['ngCordova'])
 
 .controller('LineCtrl', function($scope, $http, $ionicPlatform, $cordovaBadge) {
        
+  $scope.deleteLine=function(line, $index){
+    var toParams = function (obj) 
+    {
+      var p = [];
+      for (var key in obj) 
+      {
+        p.push(key + '=' + encodeURIComponent(obj[key]));
+      }
+      return p.join('&');
+    };
+
+    var firstname = $scope.data.firstname;
+    console.log(firstname);
+    var lastname = $scope.data.lastname;
+    console.log(lastname);
+    var email = $scope.data.email;
+    console.log(email);
+    var key = window.localStorage.getItem('token');
+    console.log(key);
+
+    var payload = {
+      first_name: firstname,
+      last_name: lastname,
+      email: email,
+      token: key
+    };
+    console.log(payload);
+
+    lineApi = 'http://localhost:8080/api/user';
+    $http({
+        method: 'POST',
+        url: lineApi,	
+        headers: {'Content-Type': "application/x-www-form-urlencoded"},
+        data: toParams(payload),
+    }).success(function(res){
+      // console.log(res);
+      
+      var a = $ionicPopup.alert({
+        title: "Success!",
+        template: "User updated."
+      });
+
+    });
+  };
+       
+  if(window.localStorage.getItem("user_type") == 'admin') $scope.isAdmin = true;
+  else $scope.isAdmin = false;
   $scope.lineentries = "";
   $http.get('http://localhost:8080/api/lineentry')
     .success(function(data, status, headers,config){

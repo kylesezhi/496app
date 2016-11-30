@@ -6,7 +6,7 @@
          {{user.first_name}} {{user.last_name}}
          &nbsp;
         <div class="buttons">
-        <button ng-if="user.isMe" ng-click="addUserToLine({{user}}, $index)" class="button button-balanced">
+        <button ng-if="isAdmin" ng-click="addUserToLine({{user}}, $index)" class="button button-balanced">
           <i class="icon ion-plus-round"></i>
         </button>
         <button ng-if="isAdmin" ng-click="deleteUser({{user.id}}, $index)" class="button button-assertive">
