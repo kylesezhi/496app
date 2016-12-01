@@ -106,26 +106,7 @@ angular.module('starter.controllers', ['ngCordova'])
 })
 
 .controller('UsersCtrl', function($scope, $http, $ionicPlatform, $cordovaBadge, $state, $ionicPopup) {
-  // console.log("DEBUZzz");
-  // console.log(window.localStorage.getItem("token"));
-  
-  // $scope.$on('$app.users.beforeEnter', function(){
-  //   $state.reload();
-  // });
-  
-  $ionicPlatform.ready(function() {
-      // TODO BADGE 1/2
-      // $cordovaBadge.promptForPermission();
-      // 
-      // $scope.setBadge = function(value) {
-      //     $cordovaBadge.hasPermission().then(function(result) {
-      //         $cordovaBadge.set(value);
-      //     }, function(error) {
-      //         alert(error);
-      //     });
-      // };
-  });
-  
+    
   $scope.addUserToLine = function(user, $index){
     $http.put('http://localhost:8080/api/lineentry/' + user.id)
       .success(function(data, status, headers,config){
@@ -169,14 +150,6 @@ angular.module('starter.controllers', ['ngCordova'])
       console.log(admins);
       $scope.users = users; // for UI
       $scope.admins = admins; // for UI
-      
-      // TODO BADGE 2/2
-      // $cordovaBadge.hasPermission().then(function(result) {
-      //     $cordovaBadge.set(ids.length);
-      // }, function(error) {
-      //     alert(error);
-      // });
-      
     })
     .error(function(data, status, headers,config){
       console.log('data error');
@@ -201,6 +174,19 @@ angular.module('starter.controllers', ['ngCordova'])
 })
 
 .controller('LineCtrl', function($scope, $http, $ionicPlatform, $cordovaBadge, $ionicPopup) {
+       
+  $ionicPlatform.ready(function() {
+      // BADGE 1/3
+      $cordovaBadge.promptForPermission();
+      
+      $scope.setBadge = function(value) {
+          $cordovaBadge.hasPermission().then(function(result) {
+              $cordovaBadge.set(value);
+          }, function(error) {
+              alert(error);
+          });
+      };
+  });
        
   $scope.deleteLine=function(line, $index){
     var key = window.localStorage.getItem("token");
@@ -228,7 +214,12 @@ angular.module('starter.controllers', ['ngCordova'])
         data: toParams(payload),
     }).success(function(res){
       $scope.lineentries.splice($index, 1);
-
+      // BADGE 2/3
+      $cordovaBadge.hasPermission().then(function(result) {
+          $cordovaBadge.set($scope.lineentries.length);
+      }, function(error) {
+          alert(error);
+      });
     });
   };
        
@@ -246,6 +237,13 @@ angular.module('starter.controllers', ['ngCordova'])
       }
       console.log(line); // for browser console
       $scope.lineentries = line; // for UI
+      
+      // BADGE 3/3
+      $cordovaBadge.hasPermission().then(function(result) {
+          $cordovaBadge.set($scope.lineentries.length);
+      }, function(error) {
+          alert(error);
+      });
     })
     .error(function(data, status, headers,config){
       console.log('data error');
