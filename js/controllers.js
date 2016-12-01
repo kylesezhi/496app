@@ -127,37 +127,16 @@ angular.module('starter.controllers', ['ngCordova'])
   });
   
   $scope.addUserToLine = function(user, $index){
-    var token = window.localStorage.getItem("token");
-    var toParams = function (obj) 
-    {
-      var p = [];
-      for (var key in obj) 
-      {
-        p.push(key + '=' + encodeURIComponent(obj[key]));
-      }
-      return p.join('&');
-    };
-    var payload = {
-      user: user.id,
-      token: token
-    };
-    console.log(payload);
-
-    lineApi = 'http://localhost:8080/api/lineentry';
-    $http({
-        method: 'POST',
-        url: lineApi,	
-        headers: {'Content-Type': "application/x-www-form-urlencoded"},
-        data: toParams(payload),
-    }).success(function(res){
-      // console.log(res);
-      
-      var a = $ionicPopup.alert({
-        title: "Success!",
-        template: "User added to line."
+    $http.put('http://localhost:8080/api/lineentry/' + user.id)
+      .success(function(data, status, headers,config){
+        console.log('data success');
+        console.log(data); // for browser console
+      })
+      .error(function(data, status, headers,config){
+        console.log('data error');
+      })
+      .then(function(lineentries){
       });
-
-    });
   };
   
   $scope.users = "";
