@@ -200,9 +200,10 @@ angular.module('starter.controllers', ['ngCordova'])
     };
 })
 
-.controller('LineCtrl', function($scope, $http, $ionicPlatform, $cordovaBadge) {
+.controller('LineCtrl', function($scope, $http, $ionicPlatform, $cordovaBadge, $ionicPopup) {
        
   $scope.deleteLine=function(line, $index){
+    var key = window.localStorage.getItem("token");
     var toParams = function (obj) 
     {
       var p = [];
@@ -213,36 +214,20 @@ angular.module('starter.controllers', ['ngCordova'])
       return p.join('&');
     };
 
-    var firstname = $scope.data.firstname;
-    console.log(firstname);
-    var lastname = $scope.data.lastname;
-    console.log(lastname);
-    var email = $scope.data.email;
-    console.log(email);
-    var key = window.localStorage.getItem('token');
-    console.log(key);
-
     var payload = {
-      first_name: firstname,
-      last_name: lastname,
-      email: email,
+      lineentry: line,
       token: key
     };
     console.log(payload);
 
-    lineApi = 'http://localhost:8080/api/user';
+    lineApi = 'http://localhost:8080/api/lineentry';
     $http({
         method: 'POST',
         url: lineApi,	
         headers: {'Content-Type': "application/x-www-form-urlencoded"},
         data: toParams(payload),
     }).success(function(res){
-      // console.log(res);
-      
-      var a = $ionicPopup.alert({
-        title: "Success!",
-        template: "User updated."
-      });
+      $scope.lineentries.splice($index, 1);
 
     });
   };
