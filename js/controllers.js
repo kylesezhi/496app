@@ -55,7 +55,7 @@ angular.module('starter.controllers', ['ngCordova'])
       }
       return p.join('&');
     };
-    var lineApi = 'http://localhost:8080/api/login';
+    var lineApi = 'https://project-4-144319.appspot.com/api/login';
     var password = $scope.loginData.password;
     var email = $scope.loginData.email;
     
@@ -108,7 +108,7 @@ angular.module('starter.controllers', ['ngCordova'])
 .controller('UsersCtrl', function($scope, $http, $ionicPlatform, $cordovaBadge, $state, $ionicPopup) {
     
   $scope.addUserToLine = function(user, $index){
-    $http.put('http://localhost:8080/api/lineentry/' + user.id)
+    $http.put('https://project-4-144319.appspot.com/api/lineentry/' + user.id)
       .success(function(data, status, headers,config){
         console.log('data success');
         console.log(data); // for browser console
@@ -124,7 +124,7 @@ angular.module('starter.controllers', ['ngCordova'])
   $scope.loggedIn = window.localStorage.getItem("token");
   if(window.localStorage.getItem("user_type") == 'admin') $scope.isAdmin = true;
   else $scope.isAdmin = false;
-  var lineApi = 'http://localhost:8080/api/user';
+  var lineApi = 'https://project-4-144319.appspot.com/api/user';
   $http.get(lineApi)
     .success(function(data, status, headers,config){
       console.log('data success');
@@ -206,7 +206,7 @@ angular.module('starter.controllers', ['ngCordova'])
     };
     console.log(payload);
 
-    lineApi = 'http://localhost:8080/api/lineentry';
+    lineApi = 'https://project-4-144319.appspot.com/api/lineentry';
     $http({
         method: 'POST',
         url: lineApi,	
@@ -226,7 +226,7 @@ angular.module('starter.controllers', ['ngCordova'])
   if(window.localStorage.getItem("user_type") == 'admin') $scope.isAdmin = true;
   else $scope.isAdmin = false;
   $scope.lineentries = "";
-  $http.get('http://localhost:8080/api/lineentry')
+  $http.get('https://project-4-144319.appspot.com/api/lineentry')
     .success(function(data, status, headers,config){
       console.log('data success');
       console.log(data); // for browser console
@@ -260,7 +260,7 @@ angular.module('starter.controllers', ['ngCordova'])
   //   lastname: 'morestuff'
   // };
   
-  var lineApi = 'http://localhost:8080/api/user/' +  window.localStorage.getItem("id");
+  var lineApi = 'https://project-4-144319.appspot.com/api/user/' +  window.localStorage.getItem("id");
   $http.get(lineApi)
     .success(function(data, status, headers, config){
       console.log('data success');
@@ -307,7 +307,7 @@ angular.module('starter.controllers', ['ngCordova'])
       };
       console.log(payload);
 
-      lineApi = 'http://localhost:8080/api/user';
+      lineApi = 'https://project-4-144319.appspot.com/api/user';
       $http({
           method: 'POST',
           url: lineApi,	
@@ -337,7 +337,7 @@ angular.module('starter.controllers', ['ngCordova'])
     }
     return p.join('&');
   };
-  var lineApi = 'http://localhost:8080/api/user';
+  var lineApi = 'https://project-4-144319.appspot.com/api/user';
   $scope.typeList = [
         { text: "Student", value: "student" },
         { text: "Teacher", value: "teacher" },
