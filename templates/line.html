@@ -2,7 +2,7 @@
   <ion-content>
     <ion-list>
       <ion-item ng-repeat="line in lineentries track by $index" class="item-button-left">
-        <button ng-if="isAdmin && $last" ng-click="deleteLine({{line.id}}, $index)" class="button button-balanced">
+        <button ng-if="isAdmin && $first" ng-click="deleteLine({{line.id}}, $index)" class="button button-balanced">
           <i class="icon ion-checkmark"></i>
         </button>
         {{line.username}}
