@@ -76,10 +76,6 @@ angular.module('starter.controllers', ['ngCordova'])
         window.localStorage.setItem("token", res.token);
         window.localStorage.setItem("id", res.id);
         window.localStorage.setItem("user_type", res.user_type);
-        // var a = $ionicPopup.alert({
-        //   title: "Success!",
-        //   template: "Logged in."
-        // });
       } else {
         window.localStorage.removeItem("token");
         window.localStorage.removeItem("id");
