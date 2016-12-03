@@ -124,7 +124,6 @@ angular.module('starter.controllers', ['ngCordova'])
   $http.get(lineApi)
     .success(function(data, status, headers,config){
       console.log('data success');
-      // console.log(data);
       users = [];
       admins = [];
       for(i = 0;i<data.length;i++) {
@@ -135,7 +134,6 @@ angular.module('starter.controllers', ['ngCordova'])
           users.push(x);
         }
       }
-      console.log("DEBUG"); // for browser console
       for(i = 0;i<users.length;i++) { // who am I?
         if (users[i].id == window.localStorage.getItem("id")) users[i].isMe = true;
       }
@@ -310,7 +308,6 @@ angular.module('starter.controllers', ['ngCordova'])
           headers: {'Content-Type': "application/x-www-form-urlencoded"},
           data: toParams(payload),
       }).success(function(res){
-        // console.log(res);
         
         var a = $ionicPopup.alert({
           title: "Success!",
