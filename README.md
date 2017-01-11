@@ -6,7 +6,7 @@ This application uses a RESTful API hosted on Google App Engine. The code for th
 [https://github.com/kylesezhi/line-app-gae](https://github.com/kylesezhi/line-app-gae)
 
 ## Video tour
-A brief tour of this app in use can be found here:
+A brief tour of this app in use can be found here (I have since cut my hair):
 [http://bit.ly/2ijY06a](http://bit.ly/2ijY06a)
 
 ## Technologies Used
