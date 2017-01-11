@@ -5,9 +5,9 @@ iOS application for managing students waiting in line.
 This application uses a RESTful API hosted on Google App Engine. The code for this web application can be found here:
 [https://github.com/kylesezhi/line-app-gae](https://github.com/kylesezhi/line-app-gae)
 
-## Video tour
-A brief tour of this app in use can be found here (I have since cut my hair):
-[http://bit.ly/2ijY06a](http://bit.ly/2ijY06a)
+## Detailed Overview
+For a detailed overview of this project that covers this front-end as well as the GAE backend, see this repo:
+[https://github.com/kylesezhi/line-app-gae](https://github.com/kylesezhi/line-app-gae)
 
 ## Technologies Used
 This application was written in Ionic 1 using Cordova plugins for mobile-specific badge updates. 
